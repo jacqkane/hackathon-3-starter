@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AnimalDetailsController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+Route::get('/search', [SearchController::class, 'search']);
+Route::get('/details/{id}', [AnimalDetailsController::class, 'show']);
