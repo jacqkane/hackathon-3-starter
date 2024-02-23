@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AnimalDetailsController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\OwnerController;
@@ -16,14 +18,15 @@ use Doctrine\DBAL\Schema\Index;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
-
-Route::get('/animals', [AnimalController::class, 'index']);
-Route::get('/owners', [OwnerController::class, 'index']);
+Route::get('/search', [SearchController::class, 'search']);
+Route::get('/details/{id}', [AnimalDetailsController::class, 'show']);
+Route::get('create', [AnimalController::class, 'index'])->name('index');
 Route::get('edit/{id}', [AnimalController::class, 'edit'])->name('edit');
-Route::put('edit/{id}', [AnimalController::class, 'update'])->name('update');
-Route::get('create', [AnimalController::class, 'index'])->name('create');
-Route::get('edit', [AnimalController::class, 'index'])->name('index');
-Route::post('create', [AnimalController::class, 'store'])->name('store');
+Route::put('update/{id}', [AnimalController::class, 'update'])->name('update');
+Route::post('store', [AnimalController::class, 'store'])->name('store');
